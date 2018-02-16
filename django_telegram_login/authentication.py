@@ -27,13 +27,7 @@ def verify_telegram_authentication(bot_token, request_data):
     request_data.pop('hash', None)
     request_data_alphabetical_order = sorted(request_data.items(), key=lambda x: x[0])
 
-    data_check_string = []
-
-    for data_pair in request_data_alphabetical_order:
-        key, value = data_pair[0], data_pair[1]
-        data_check_string.append(key + '=' + value)
-
-    data_check_string = '\n'.join(data_check_string)
+    data_check_string = '\n'.join(['='.join(pair) for pair in request_data_alphabetical_order])
 
     secret_key = hashlib.sha256(bot_token.encode()).digest()
     _hash = hmac.new(secret_key, msg=data_check_string.encode(), digestmod=hashlib.sha256).hexdigest()

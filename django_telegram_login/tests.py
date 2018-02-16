@@ -111,31 +111,33 @@ class TestWidgetGenerator(unittest.TestCase):
         self.assertEqual(self.expected_callback_large, result)
 
     def test_create_callback_corner_radius(self):
-        result = create_callback_login_widget(self.bot_name, corner_radius=1, user_photo=DISABLE_USER_PHOTO)
+        result = create_callback_login_widget(self.bot_name, corner_radius=1, show_photo=DISABLE_USER_PHOTO)
         self.assertEqual(self.expected_callback_corner_radius, result)
 
     def test_create_callback_no_photo(self):
-        result = create_callback_login_widget(self.bot_name, user_photo=DISABLE_USER_PHOTO)
+        result = create_callback_login_widget(self.bot_name, show_photo=DISABLE_USER_PHOTO)
         self.assertEqual(self.expected_callback_no_photo, result)
 
     def test_create_redirect_small(self):
-        result = create_redirect_login_widget(self.redirect_url, self.bot_name, size=SMALL)
+        result = create_redirect_login_widget(self.bot_name, size=SMALL, redirect_url=self.redirect_url)
         self.assertEqual(self.expected_redirect_small, result)
 
     def test_create_redirect_medium(self):
-        result = create_redirect_login_widget(self.redirect_url, self.bot_name, size=MEDIUM)
+        result = create_redirect_login_widget(self.bot_name, size=MEDIUM, redirect_url=self.redirect_url)
         self.assertEqual(self.expected_redirect_medium, result)
 
     def test_create_redirect_large(self):
-        result = create_redirect_login_widget(self.redirect_url, self.bot_name, size=LARGE)
+        result = create_redirect_login_widget(self.bot_name, size=LARGE, redirect_url=self.redirect_url)
         self.assertEqual(self.expected_redirect_large, result)
 
     def test_create_redirect_corner_radius(self):
-        result = create_redirect_login_widget(self.redirect_url, self.bot_name, corner_radius=10, user_photo=DISABLE_USER_PHOTO)
+        result = create_redirect_login_widget(
+            self.bot_name, corner_radius=10, show_photo=DISABLE_USER_PHOTO, redirect_url=self.redirect_url)
         self.assertEqual(self.expected_redirect_corner_radius, result)
 
     def test_create_redirect_no_photo(self):
-        result = create_redirect_login_widget(self.redirect_url, self.bot_name, user_photo=DISABLE_USER_PHOTO)
+        result = create_redirect_login_widget(
+            self.bot_name, show_photo=DISABLE_USER_PHOTO, redirect_url=self.redirect_url)
         self.assertEqual(self.expected_redirect_no_photo, result)
 
 
